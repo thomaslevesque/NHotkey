@@ -3,8 +3,7 @@ NHotkey
 
 Easily handle shortcut keys even when your app doesn't have focus!
 
-Windows Forms usage
--------------------
+### Windows Forms usage
 
 Add a reference to `NHotkey.dll` and `NHotkey.WindowsForms.dll`.
 
@@ -67,8 +66,7 @@ property of the `HotkeyEventArgs`:
     }
 ```
 
-WPF usage
----------
+### WPF usage
 
 The approach for WPF is very similar to the one for Windows Forms, with a few minor differences.
 The WPF version also supports `InputBindings`.
