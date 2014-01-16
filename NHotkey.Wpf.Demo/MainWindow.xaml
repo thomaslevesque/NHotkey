@@ -1,0 +1,12 @@
+﻿<Window x:Class="NHotkey.Wpf.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="300" Width="300">
+    <Window.InputBindings>
+        <KeyBinding Gesture="Ctrl+Alt+Divide" Command="{Binding NegateCommand}"
+                    WpfHotkeyManager.RegisterGlobalHotkey="True" />
+    </Window.InputBindings>
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Text="{Binding Value}" />
+    </Grid>
+</Window>

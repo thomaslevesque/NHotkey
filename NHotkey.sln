@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.WindowsForms.Demo", "NHotkey.WindowsForms.Demo\NHotkey.WindowsForms.Demo.csproj", "{30950D62-696C-4C1C-A6F1-93FB7B355E71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey", "NHotkey\NHotkey.csproj", "{324D364C-BF69-4B87-BE83-26935B9F0783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.WindowsForms", "NHotkey.WindowsForms\NHotkey.WindowsForms.csproj", "{BF25B2DD-4D5B-4B43-874D-3A204C73B73A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.Wpf", "NHotkey.Wpf\NHotkey.Wpf.csproj", "{1A22762D-A928-431C-B916-F5ED6DA94C11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.Wpf.Demo", "NHotkey.Wpf.Demo\NHotkey.Wpf.Demo.csproj", "{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{CEE3E414-E343-43C9-8CB9-72CA02FD0299}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{FBA6085F-DD7E-4E18-9BC8-8F709157EC33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30950D62-696C-4C1C-A6F1-93FB7B355E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30950D62-696C-4C1C-A6F1-93FB7B355E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30950D62-696C-4C1C-A6F1-93FB7B355E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30950D62-696C-4C1C-A6F1-93FB7B355E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{324D364C-BF69-4B87-BE83-26935B9F0783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{324D364C-BF69-4B87-BE83-26935B9F0783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{324D364C-BF69-4B87-BE83-26935B9F0783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{324D364C-BF69-4B87-BE83-26935B9F0783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF25B2DD-4D5B-4B43-874D-3A204C73B73A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF25B2DD-4D5B-4B43-874D-3A204C73B73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF25B2DD-4D5B-4B43-874D-3A204C73B73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF25B2DD-4D5B-4B43-874D-3A204C73B73A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A22762D-A928-431C-B916-F5ED6DA94C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A22762D-A928-431C-B916-F5ED6DA94C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A22762D-A928-431C-B916-F5ED6DA94C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A22762D-A928-431C-B916-F5ED6DA94C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3} = {CEE3E414-E343-43C9-8CB9-72CA02FD0299}
+		{30950D62-696C-4C1C-A6F1-93FB7B355E71} = {CEE3E414-E343-43C9-8CB9-72CA02FD0299}
+		{BF25B2DD-4D5B-4B43-874D-3A204C73B73A} = {FBA6085F-DD7E-4E18-9BC8-8F709157EC33}
+		{1A22762D-A928-431C-B916-F5ED6DA94C11} = {FBA6085F-DD7E-4E18-9BC8-8F709157EC33}
+		{324D364C-BF69-4B87-BE83-26935B9F0783} = {FBA6085F-DD7E-4E18-9BC8-8F709157EC33}
+	EndGlobalSection
+EndGlobal
