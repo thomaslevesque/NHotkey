@@ -11,20 +11,23 @@ namespace NHotkey.WindowsForms.Demo
 
         public Form1()
         {
+            InitializeComponent();
+
             _hotkeyManager = new WindowsFormsHotkeyManager(this);
             _hotkeyManager.Add("Increment", Keys.Control | Keys.Alt | Keys.Add, OnIncrement);
             _hotkeyManager.Add("Decrement", Keys.Control | Keys.Alt | Keys.Subtract, OnDecrement);
-            InitializeComponent();
         }
 
         private void OnIncrement(object sender, HotkeyEventArgs e)
         {
             Value++;
+            e.Handled = true;
         }
 
         private void OnDecrement(object sender, HotkeyEventArgs e)
         {
             Value--;
+            e.Handled = true;
         }
 
         private int Value
