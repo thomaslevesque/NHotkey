@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>04cf71b9-bbd7-477b-b6d7-724d4737221d</ProjectGuid>
+    <OutputPath>Bin\</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuBuildVersionSource>library</NuBuildVersionSource>
+    <NuBuildVersionFileName>true</NuBuildVersionFileName>
+    <NuBuildAddBinariesToSubfolder>false</NuBuildAddBinariesToSubfolder>
+    <NuBuildIncludePdbs>false</NuBuildIncludePdbs>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="NHotkey.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NHotkey\NHotkey.csproj">
+      <Name>NHotkey</Name>
+      <Project>{324d364c-bf69-4b87-be83-26935b9f0783}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\NuBuild\v1\NuBuild.targets" />
+</Project>
