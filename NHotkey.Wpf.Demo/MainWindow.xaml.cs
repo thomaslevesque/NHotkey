@@ -10,11 +10,11 @@ namespace NHotkey.Wpf.Demo
     /// </summary>
     public partial class MainWindow : INotifyPropertyChanged
     {
-        private readonly WpfHotkeyManager _hotkeyManager;
+        private readonly HotkeyManager _hotkeyManager;
 
         public MainWindow()
         {
-            _hotkeyManager = new WpfHotkeyManager(this);
+            _hotkeyManager = new HotkeyManager(this);
             _hotkeyManager.Add("Increment", Key.Add, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
             _hotkeyManager.Add("Decrement", Key.Subtract, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NHotkey
 {
-    public abstract class HotkeyManager : IDisposable
+    public abstract class HotkeyManagerBase : IDisposable
     {
         private readonly Dictionary<int, string> _hotkeyNames = new Dictionary<int, string>();
         private readonly Dictionary<string, Hotkey> _hotkeys = new Dictionary<string, Hotkey>();

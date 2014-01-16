@@ -6,7 +6,7 @@ using System.Windows.Interop;
 
 namespace NHotkey.Wpf
 {
-    public class WpfHotkeyManager : HotkeyManager
+    public class HotkeyManager : HotkeyManagerBase
     {
         [AttachedPropertyBrowsableForType(typeof(KeyBinding))]
         public static bool GetRegisterGlobalHotkey(KeyBinding binding)
@@ -20,11 +20,11 @@ namespace NHotkey.Wpf
         }
 
         public static readonly DependencyProperty RegisterGlobalHotkeyProperty =
-            DependencyProperty.RegisterAttached("RegisterGlobalHotkey", typeof(bool), typeof(WpfHotkeyManager), new PropertyMetadata(false));
+            DependencyProperty.RegisterAttached("RegisterGlobalHotkey", typeof(bool), typeof(HotkeyManager), new PropertyMetadata(false));
 
         private readonly Window _window;
 
-        public WpfHotkeyManager(Window window)
+        public HotkeyManager(Window window)
         {
             _window = window;
             _window.SourceInitialized += WindowSourceInitialized;
@@ -130,45 +130,53 @@ namespace NHotkey.Wpf
                 return result;
 
             if (hotkey != null)
-            {
-                ExecuteBoundCommand(hotkey);
-            }
+                handled = ExecuteBoundCommand(hotkey);
+
             return result;
         }
 
-        private void ExecuteBoundCommand(Hotkey hotkey)
+        private bool ExecuteBoundCommand(Hotkey hotkey)
         {
             var key = KeyInterop.KeyFromVirtualKey((int) hotkey.VirtualKey);
             var modifiers = GetModifiers(hotkey.Flags);
+            bool handled = false;
             foreach (var binding in _window.InputBindings.OfType<KeyBinding>())
             {
                 if (binding.Key == key && binding.Modifiers == modifiers)
                 {
-                    ExecuteCommand(binding);
+                    handled |= ExecuteCommand(binding);
                 }
             }
+            return handled;
         }
 
-        private static void ExecuteCommand(InputBinding binding)
+        private static bool ExecuteCommand(InputBinding binding)
         {
             var command = binding.Command;
             var parameter = binding.CommandParameter;
             var target = binding.CommandTarget;
             
             if (command == null)
-                return;
+                return false;
             
             var routedCommand = command as RoutedCommand;
             if (routedCommand != null)
             {
                 if (routedCommand.CanExecute(parameter, target))
+                {
                     routedCommand.Execute(parameter, target);
+                    return true;
+                }
             }
             else
             {
                 if (command.CanExecute(parameter))
+                {
                     command.Execute(parameter);
+                    return true;
+                }
             }
+            return false;
         }
 
         public override void Dispose()

@@ -3,12 +3,12 @@ using System.Windows.Forms;
 
 namespace NHotkey.WindowsForms
 {
-    public class WindowsFormsHotkeyManager : HotkeyManager
+    public class HotkeyManager : HotkeyManagerBase
     {
         private readonly Form _form;
         private readonly DelegateMessageFilter _filter;
 
-        public WindowsFormsHotkeyManager(Form form)
+        public HotkeyManager(Form form)
         {
             _form = form;
             _filter = new DelegateMessageFilter(HandleMessage);

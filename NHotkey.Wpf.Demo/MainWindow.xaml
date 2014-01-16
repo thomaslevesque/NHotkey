@@ -4,7 +4,7 @@
         Title="MainWindow" Height="300" Width="300">
     <Window.InputBindings>
         <KeyBinding Gesture="Ctrl+Alt+Divide" Command="{Binding NegateCommand}"
-                    WpfHotkeyManager.RegisterGlobalHotkey="True" />
+                    HotkeyManager.RegisterGlobalHotkey="True" />
     </Window.InputBindings>
     <Grid>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Text="{Binding Value}" />

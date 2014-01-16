@@ -36,7 +36,7 @@
     <Compile Include="Hotkey.cs" />
     <Compile Include="HotkeyEventArgs.cs" />
     <Compile Include="HotkeyFlags.cs" />
-    <Compile Include="HotkeyManager.cs" />
+    <Compile Include="HotkeyManagerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ namespace NHotkey.WindowsForms.Demo
 {
     public partial class Form1 : Form
     {
-        private readonly WindowsFormsHotkeyManager _hotkeyManager;
+        private readonly HotkeyManager _hotkeyManager;
         private int _value;
 
 
@@ -13,7 +13,7 @@ namespace NHotkey.WindowsForms.Demo
         {
             InitializeComponent();
 
-            _hotkeyManager = new WindowsFormsHotkeyManager(this);
+            _hotkeyManager = new HotkeyManager(this);
             _hotkeyManager.Add("Increment", Keys.Control | Keys.Alt | Keys.Add, OnIncrement);
             _hotkeyManager.Add("Decrement", Keys.Control | Keys.Alt | Keys.Subtract, OnDecrement);
         }
