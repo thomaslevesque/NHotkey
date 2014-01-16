@@ -10,17 +10,23 @@ Add a reference to `NHotkey.dll` and `NHotkey.WindowsForms.dll`.
 
 In your `Form`, declare a field of type `WindowsFormsHotkeyManager`:
 
+```csharp
     private readonly WindowsFormsHotkeyManager _hotkeyManager;
+```
 
 In the constructor of your `Form`, initialize `_hotkeyManager` to a new instance of
 `WindowsFormsHotkeyManager`, passing a reference to the form to the constructor:
 
+```csharp
     _hotkeyManager = new WindowsFormsHotkeyManager(this);
+```
 
 Add some hotkeys:
 
+```csharp
     _hotkeyManager.Add("Increment", Keys.Control | Keys.Alt | Keys.Add, OnIncrement);
     _hotkeyManager.Add("Decrement", Keys.Control | Keys.Alt | Keys.Subtract, OnDecrement);
+```
 
 - the first parameter is an application-defined name for the hotkey; it can be anything you like,
 as long as it's unique;
@@ -28,6 +34,7 @@ as long as it's unique;
 - the last parameter is a delegate of type `EventHandler<HotkeyEventArgs>` that will be called
 when this hotkey is pressed. For instance:
 
+```csharp
     private void OnIncrement(object sender, HotkeyEventArgs e)
     {
         Value++;
@@ -39,10 +46,12 @@ when this hotkey is pressed. For instance:
         Value--;
         e.Handled = true;
     }
+```
 
 If you want to handle several hotkeys with the same handler, you can check the `Name`
 property of the `HotkeyEventArgs`:
 
+```csharp
     private void OnIncrementOrDecrement(object sender, HotkeyEventArgs e)
     {
         switch (e.Name)
@@ -56,6 +65,7 @@ property of the `HotkeyEventArgs`:
         }
         e.Handled = true;
     }
+```
 
 WPF usage
 ---------
@@ -67,17 +77,23 @@ Add a reference to `NHotkey.dll` and `NHotkey.Wpf.dll`.
 
 In your `Window`, declare a field of type `WpfHotkeyManager`:
 
+```csharp
     private readonly WpfHotkeyManager _hotkeyManager;
+```
 
 In the constructor of your `Window`, initialize `_hotkeyManager` to a new instance of
 `WpfHotkeyManager`, passing a reference to the window to the constructor:
 
+```csharp
     _hotkeyManager = new WpfHotkeyManager(this);
+```
 
 Add some hotkeys:
 
+```csharp
     _hotkeyManager.Add("Increment", Key.Add, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
     _hotkeyManager.Add("Decrement", Key.Subtract, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
+```
 
 - the first parameter is an application-defined name for the hotkey; it can be anything you like,
 as long as it's unique;
@@ -85,10 +101,11 @@ as long as it's unique;
 - the last parameter is a delegate of type `EventHandler<HotkeyEventArgs>` that will be called
 when this hotkey is pressed.
 
-To support applications that use the MVVM pattern, you can also specify hotkeys using
+To support applications that use the MVVM pattern, you can also specify hotkeys in XAML using
 `InputBindings`. Just declare `KeyBindings` as usual, and set the `WpfHotkeyManager.RegisterGlobalHotkey`
 attached property to `true`:
 
+```xml
     ...
     <Window.InputBindings>
         <KeyBinding Gesture="Ctrl+Alt+Add" Command="{Binding IncrementCommand}"
@@ -97,6 +114,7 @@ attached property to `true`:
                    WpfHotkeyManager.RegisterGlobalHotkey="True" />
     </Window.InputBindings>
     ...
+```
 
 **Remarks**
 
