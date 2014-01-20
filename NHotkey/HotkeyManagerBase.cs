@@ -7,15 +7,18 @@ namespace NHotkey
     {
         private readonly Dictionary<int, string> _hotkeyNames = new Dictionary<int, string>();
         private readonly Dictionary<string, Hotkey> _hotkeys = new Dictionary<string, Hotkey>();
+        private IntPtr _hwnd;
 
-
-        internal void Add(string name, uint virtualKey, HotkeyFlags flags, EventHandler<HotkeyEventArgs> handler)
+        internal void AddOrReplace(string name, uint virtualKey, HotkeyFlags flags, EventHandler<HotkeyEventArgs> handler)
         {
             var hotkey = new Hotkey(virtualKey, flags, handler);
             lock (_hotkeys)
             {
+                Remove(name);
                 _hotkeys.Add(name, hotkey);
                 _hotkeyNames.Add(hotkey.Id, name);
+                if (_hwnd != IntPtr.Zero)
+                    hotkey.Register(_hwnd);
             }
         }
 
@@ -28,6 +31,8 @@ namespace NHotkey
                 {
                     _hotkeys.Remove(name);
                     _hotkeyNames.Remove(hotkey.Id);
+                    if (_hwnd != IntPtr.Zero)
+                        hotkey.Unregister();
                 }
             }
         }
@@ -40,6 +45,7 @@ namespace NHotkey
                 {
                     hotkey.Register(hwnd);
                 }
+                _hwnd = hwnd;
             }
         }
 
@@ -51,6 +57,7 @@ namespace NHotkey
                 {
                     hotkey.Unregister();
                 }
+                _hwnd = IntPtr.Zero;
             }
         }
 

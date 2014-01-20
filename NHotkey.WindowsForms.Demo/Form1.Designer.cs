@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lblValue = new System.Windows.Forms.Label();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btnChangeBindings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblValue
@@ -51,11 +52,22 @@
             this.trayIcon.Text = "NHotkey demo";
             this.trayIcon.Visible = true;
             // 
+            // btnChangeBindings
+            // 
+            this.btnChangeBindings.Location = new System.Drawing.Point(159, 226);
+            this.btnChangeBindings.Name = "btnChangeBindings";
+            this.btnChangeBindings.Size = new System.Drawing.Size(113, 23);
+            this.btnChangeBindings.TabIndex = 1;
+            this.btnChangeBindings.Text = "Change bindings";
+            this.btnChangeBindings.UseVisualStyleBackColor = true;
+            this.btnChangeBindings.Click += new System.EventHandler(this.btnChangeBindings_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.btnChangeBindings);
             this.Controls.Add(this.lblValue);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -67,6 +79,7 @@
 
         private System.Windows.Forms.Label lblValue;
         private System.Windows.Forms.NotifyIcon trayIcon;
+        private System.Windows.Forms.Button btnChangeBindings;
     }
 }
 

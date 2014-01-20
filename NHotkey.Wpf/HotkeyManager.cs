@@ -31,16 +31,16 @@ namespace NHotkey.Wpf
             _window.Closed += WindowClosed;
         }
 
-        public void Add(string name, Key key, ModifierKeys modifiers, EventHandler<HotkeyEventArgs> handler)
+        public void AddOrReplace(string name, Key key, ModifierKeys modifiers, EventHandler<HotkeyEventArgs> handler)
         {
-            Add(name, key, modifiers, false, handler);
+            AddOrReplace(name, key, modifiers, false, handler);
         }
 
-        public void Add(string name, Key key, ModifierKeys modifiers, bool noRepeat, EventHandler<HotkeyEventArgs> handler)
+        public void AddOrReplace(string name, Key key, ModifierKeys modifiers, bool noRepeat, EventHandler<HotkeyEventArgs> handler)
         {
             var flags = GetFlags(modifiers, noRepeat);
             var vk = (uint)KeyInterop.VirtualKeyFromKey(key);
-            Add(name, vk, flags, handler);
+            AddOrReplace(name, vk, flags, handler);
         }
 
         private static HotkeyFlags GetFlags(ModifierKeys modifiers, bool noRepeat)
@@ -103,7 +103,7 @@ namespace NHotkey.Wpf
                 string name = gesture.DisplayString;
                 if (string.IsNullOrEmpty(name))
                     name = converter.ConvertToString(gesture);
-                Add(name, gesture.Key, gesture.Modifiers, null);
+                AddOrReplace(name, gesture.Key, gesture.Modifiers, null);
             }
         }
 

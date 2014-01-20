@@ -18,16 +18,16 @@ namespace NHotkey.WindowsForms
             
         }
 
-        public void Add(string name, Keys keys, bool noRepeat, EventHandler<HotkeyEventArgs> handler)
+        public void AddOrReplace(string name, Keys keys, bool noRepeat, EventHandler<HotkeyEventArgs> handler)
         {
             var flags = GetFlags(keys, noRepeat);
             var vk = unchecked((uint)(keys & ~Keys.Modifiers));
-            Add(name, vk, flags, handler);
+            AddOrReplace(name, vk, flags, handler);
         }
 
-        public void Add(string name, Keys keys, EventHandler<HotkeyEventArgs> handler)
+        public void AddOrReplace(string name, Keys keys, EventHandler<HotkeyEventArgs> handler)
         {
-            Add(name, keys, false, handler);
+            AddOrReplace(name, keys, false, handler);
         }
 
         private void HandleCreated(object sender, EventArgs e)

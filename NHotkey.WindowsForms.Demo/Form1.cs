@@ -14,8 +14,8 @@ namespace NHotkey.WindowsForms.Demo
             InitializeComponent();
 
             _hotkeyManager = new HotkeyManager(this);
-            _hotkeyManager.Add("Increment", Keys.Control | Keys.Alt | Keys.Add, OnIncrement);
-            _hotkeyManager.Add("Decrement", Keys.Control | Keys.Alt | Keys.Subtract, OnDecrement);
+            _hotkeyManager.AddOrReplace("Increment", Keys.Control | Keys.Alt | Keys.Add, OnIncrement);
+            _hotkeyManager.AddOrReplace("Decrement", Keys.Control | Keys.Alt | Keys.Subtract, OnDecrement);
         }
 
         private void OnIncrement(object sender, HotkeyEventArgs e)
@@ -44,6 +44,12 @@ namespace NHotkey.WindowsForms.Demo
         {
             base.OnClosed(e);
             _hotkeyManager.Dispose();
+        }
+
+        private void btnChangeBindings_Click(object sender, EventArgs e)
+        {
+            _hotkeyManager.AddOrReplace("Increment", Keys.Control | Keys.Alt | Keys.Up, OnIncrement);
+            _hotkeyManager.AddOrReplace("Decrement", Keys.Control | Keys.Alt | Keys.Down, OnDecrement);
         }
     }
 }
