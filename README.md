@@ -99,7 +99,7 @@ attached property to `true`:
     ...
 ```
 
-**Known limitation of this feature**
+**Known limitations of this feature**
 
 - the `HotkeyManager` can't detect if you remove a `KeyBinding`; it only relies on the
 attached property being set to true or false. If you want to remove a KeyBinding at runtime,
