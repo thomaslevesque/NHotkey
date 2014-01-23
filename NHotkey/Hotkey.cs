@@ -44,7 +44,7 @@ namespace NHotkey
 
         public void Register(IntPtr hwnd)
         {
-            if (!RegisterHotKey(hwnd, _id, _flags, _virtualKey))
+            if (!NativeMethods.RegisterHotKey(hwnd, _id, _flags, _virtualKey))
             {
                 var hr = Marshal.GetHRForLastWin32Error();
                 throw Marshal.GetExceptionForHR(hr);
@@ -56,7 +56,7 @@ namespace NHotkey
         {
             if (_hwnd != IntPtr.Zero)
             {
-                if (!UnregisterHotKey(_hwnd, _id))
+                if (!NativeMethods.UnregisterHotKey(_hwnd, _id))
                 {
                     var hr = Marshal.GetHRForLastWin32Error();
                     throw Marshal.GetExceptionForHR(hr);
@@ -64,12 +64,5 @@ namespace NHotkey
                 _hwnd = IntPtr.Zero;
             }
         }
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern bool RegisterHotKey(IntPtr hWnd, int id, HotkeyFlags fsModifiers, uint vk);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
-            
     }
 }

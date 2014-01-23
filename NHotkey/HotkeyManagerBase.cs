@@ -3,11 +3,16 @@ using System.Collections.Generic;
 
 namespace NHotkey
 {
-    public abstract class HotkeyManagerBase : IDisposable
+    public abstract class HotkeyManagerBase
     {
         private readonly Dictionary<int, string> _hotkeyNames = new Dictionary<int, string>();
         private readonly Dictionary<string, Hotkey> _hotkeys = new Dictionary<string, Hotkey>();
         private IntPtr _hwnd;
+        internal static readonly IntPtr HwndMessage = (IntPtr)(-3);
+
+        internal HotkeyManagerBase()
+        {
+        }
 
         internal void AddOrReplace(string name, uint virtualKey, HotkeyFlags flags, EventHandler<HotkeyEventArgs> handler)
         {
@@ -59,11 +64,6 @@ namespace NHotkey
                 }
                 _hwnd = IntPtr.Zero;
             }
-        }
-
-        public virtual void Dispose()
-        {
-            Unregister();
         }
 
         private const int WmHotkey = 0x0312;

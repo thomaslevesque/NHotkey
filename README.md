@@ -5,26 +5,18 @@ Easily handle shortcut keys even when your app doesn't have focus!
 
 ### Windows Forms usage
 
-Add a reference to `NHotkey.dll` and `NHotkey.WindowsForms.dll`.
-
-In your `Form`, declare a field of type `HotkeyManager`:
+Add a reference to `NHotkey.dll` and `NHotkey.WindowsForms.dll`. In the file where you want to
+handle hotkeys, import the `NHotkey.WindowsForms` namespace:
 
 ```csharp
-    private readonly HotkeyManager _hotkeyManager;
+    using NHotkey.WindowsForms;
 ```
 
-In the constructor of your `Form`, initialize `_hotkeyManager` to a new instance of
-`HotkeyManager`, passing a reference to the form to the constructor:
+During initialization, add some hotkeys:
 
 ```csharp
-    _hotkeyManager = new HotkeyManager(this);
-```
-
-Add some hotkeys:
-
-```csharp
-    _hotkeyManager.Add("Increment", Keys.Control | Keys.Alt | Keys.Add, OnIncrement);
-    _hotkeyManager.Add("Decrement", Keys.Control | Keys.Alt | Keys.Subtract, OnDecrement);
+    HotkeyManager.Current.AddOrReplace("Increment", Keys.Control | Keys.Alt | Keys.Add, OnIncrement);
+    HotkeyManager.Current.AddOrReplace("Decrement", Keys.Control | Keys.Alt | Keys.Subtract, OnDecrement);
 ```
 
 - the first parameter is an application-defined name for the hotkey; it can be anything you like,
@@ -68,29 +60,22 @@ property of the `HotkeyEventArgs`:
 
 ### WPF usage
 
-The approach for WPF is very similar to the one for Windows Forms, with a few minor differences.
-The WPF version also supports `InputBindings`.
+The approach for WPF is very similar to the one for Windows Forms; the exposed API is slightly
+different to account for the differences between WinForms and WPF. The WPF version also
+supports `KeyBindings`.
 
-Add a reference to `NHotkey.dll` and `NHotkey.Wpf.dll`.
-
-In your `Window`, declare a field of type `HotkeyManager`:
+Add a reference to `NHotkey.dll` and `NHotkey.Wpf.dll`. In the file where you want to
+handle hotkeys, import the `NHotkey.Wpf` namespace:
 
 ```csharp
-    private readonly HotkeyManager _hotkeyManager;
+    using NHotkey.Wpf;
 ```
 
-In the constructor of your `Window`, initialize `_hotkeyManager` to a new instance of
-`HotkeyManager`, passing a reference to the window to the constructor:
+During initialization, add some hotkeys:
 
 ```csharp
-    _hotkeyManager = new HotkeyManager(this);
-```
-
-Add some hotkeys:
-
-```csharp
-    _hotkeyManager.Add("Increment", Key.Add, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
-    _hotkeyManager.Add("Decrement", Key.Subtract, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
+    HotkeyManager.Current.AddOrReplace("Increment", Key.Add, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
+    HotkeyManager.Current.AddOrReplace("Decrement", Key.Subtract, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
 ```
 
 - the first parameter is an application-defined name for the hotkey; it can be anything you like,
@@ -114,8 +99,12 @@ attached property to `true`:
     ...
 ```
 
-**Remarks**
+**Known limitation of this feature**
 
-- if you use the XAML approach, you still need to create a `HotkeyManager` for the window, or the `KeyBindings` won't
-work when your app doesn't have focus.
-- `KeyBindings` that are added *after* the window is shown won't be taken into account.
+- the `HotkeyManager` can't detect if you remove a `KeyBinding`; it only relies on the
+attached property being set to true or false. If you want to remove a KeyBinding at runtime,
+make sure you set `HotkeyManager.RegisterGlobalHotkey` to false, otherwise it will
+still be registered
+- changing the keys or modifiers of a `KeyBinding` at runtime is currently not supported. If
+you need to modify a `KeyBinding` at runtime, you need to set `HotkeyManager.RegisterGlobalHotkey`
+to false, change the key, and set `HotkeyManager.RegisterGlobalHotkey` to true again.

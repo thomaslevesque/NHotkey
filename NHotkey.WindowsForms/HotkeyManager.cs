@@ -3,19 +3,31 @@ using System.Windows.Forms;
 
 namespace NHotkey.WindowsForms
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Microsoft.Design",
+        "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable",
+        Justification = "This is a singleton; disposing it would break it")]
     public class HotkeyManager : HotkeyManagerBase
     {
-        private readonly Form _form;
-        private readonly DelegateMessageFilter _filter;
+        #region Singleton implementation
 
-        public HotkeyManager(Form form)
+        public static HotkeyManager Current { get { return LazyInitializer.Instance; } }
+
+        private static class LazyInitializer
         {
-            _form = form;
-            _filter = new DelegateMessageFilter(HandleMessage);
+            static LazyInitializer() { }
+            public static readonly HotkeyManager Instance = new HotkeyManager();
+        }
 
-            _form.HandleCreated += HandleCreated;
-            _form.HandleDestroyed += HandleDestroyed;
-            
+        #endregion
+
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
+        private readonly MessageWindow _messageWindow;
+
+        private HotkeyManager()
+        {
+            _messageWindow = new MessageWindow(this);
+            Register(_messageWindow.Handle);
         }
 
         public void AddOrReplace(string name, Keys keys, bool noRepeat, EventHandler<HotkeyEventArgs> handler)
@@ -28,25 +40,6 @@ namespace NHotkey.WindowsForms
         public void AddOrReplace(string name, Keys keys, EventHandler<HotkeyEventArgs> handler)
         {
             AddOrReplace(name, keys, false, handler);
-        }
-
-        private void HandleCreated(object sender, EventArgs e)
-        {
-            Application.AddMessageFilter(_filter);
-            Register(_form.Handle);
-        }
-
-        private void HandleDestroyed(object sender, EventArgs e)
-        {
-            Application.RemoveMessageFilter(_filter);
-            Unregister();
-        }
-
-        public override void Dispose()
-        {
-            base.Dispose();
-            _form.HandleCreated -= HandleCreated;
-            _form.HandleDestroyed -= HandleDestroyed;
         }
 
         private static HotkeyFlags GetFlags(Keys hotkey, bool noRepeat)
@@ -66,27 +59,32 @@ namespace NHotkey.WindowsForms
             return flags;
         }
 
-        private bool HandleMessage(ref Message m)
+        class MessageWindow : ContainerControl
         {
-            bool handled = false;
-            Hotkey hotkey;
-            m.Result = HandleHotkeyMessage(_form.Handle, m.Msg, m.WParam, m.LParam, ref handled, out hotkey);
-            return handled;
-        }
+            private readonly HotkeyManager _hotkeyManager;
 
-        private delegate bool MessageHandler(ref Message m);
-        private class DelegateMessageFilter : IMessageFilter
-        {
-            private readonly MessageHandler _handler;
-
-            public DelegateMessageFilter(MessageHandler handler)
+            public MessageWindow(HotkeyManager hotkeyManager)
             {
-                _handler = handler;
+                _hotkeyManager = hotkeyManager;
             }
 
-            public bool PreFilterMessage(ref Message m)
+            protected override CreateParams CreateParams
             {
-                return _handler(ref m);
+                get
+                {
+                    var parameters = base.CreateParams;
+                    parameters.Parent = HwndMessage;
+                    return parameters;
+                }
+            }
+
+            protected override void WndProc(ref Message m)
+            {
+                bool handled = false;
+                Hotkey hotkey;
+                m.Result = _hotkeyManager.HandleHotkeyMessage(Handle, m.Msg, m.WParam, m.LParam, ref handled, out hotkey);
+                if (!handled)
+                    base.WndProc(ref m);
             }
         }
     }

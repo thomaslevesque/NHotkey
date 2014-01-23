@@ -10,13 +10,10 @@ namespace NHotkey.Wpf.Demo
     /// </summary>
     public partial class MainWindow : INotifyPropertyChanged
     {
-        private readonly HotkeyManager _hotkeyManager;
-
         public MainWindow()
         {
-            _hotkeyManager = new HotkeyManager(this);
-            _hotkeyManager.AddOrReplace("Increment", Key.Add, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
-            _hotkeyManager.AddOrReplace("Decrement", Key.Subtract, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
+            HotkeyManager.Current.AddOrReplace("Increment", Key.Add, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
+            HotkeyManager.Current.AddOrReplace("Decrement", Key.Subtract, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
 
             InitializeComponent();
             DataContext = this;
@@ -70,12 +67,6 @@ namespace NHotkey.Wpf.Demo
         {
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-            _hotkeyManager.Dispose();
         }
     }
 

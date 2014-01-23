@@ -1,13 +1,30 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 
 namespace NHotkey.Wpf
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Microsoft.Design",
+        "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable",
+        Justification = "This is a singleton; disposing it would break it")]
     public class HotkeyManager : HotkeyManagerBase
     {
+        #region Singleton implementation
+
+        public static HotkeyManager Current { get { return LazyInitializer.Instance; } }
+
+        private static class LazyInitializer
+        {
+            static LazyInitializer() { }
+            public static readonly HotkeyManager Instance = new HotkeyManager();
+        }
+
+        #endregion
+
+        #region Attached property for KeyBindings
+
         [AttachedPropertyBrowsableForType(typeof(KeyBinding))]
         public static bool GetRegisterGlobalHotkey(KeyBinding binding)
         {
@@ -20,15 +37,50 @@ namespace NHotkey.Wpf
         }
 
         public static readonly DependencyProperty RegisterGlobalHotkeyProperty =
-            DependencyProperty.RegisterAttached("RegisterGlobalHotkey", typeof(bool), typeof(HotkeyManager), new PropertyMetadata(false));
+            DependencyProperty.RegisterAttached(
+                "RegisterGlobalHotkey",
+                typeof(bool),
+                typeof(HotkeyManager),
+                new PropertyMetadata(
+                    false,
+                    RegisterGlobalHotkeyPropertyChanged));
 
-        private readonly Window _window;
-
-        public HotkeyManager(Window window)
+        private static void RegisterGlobalHotkeyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            _window = window;
-            _window.SourceInitialized += WindowSourceInitialized;
-            _window.Closed += WindowClosed;
+            var keyBinding = d as KeyBinding;
+            if (keyBinding == null)
+                return;
+
+            bool oldValue = (bool) e.OldValue;
+            bool newValue = (bool) e.NewValue;
+
+            if (oldValue && !newValue)
+            {
+                Current.RemoveKeyBinding(keyBinding);
+            }
+            else if (newValue && !oldValue)
+            {
+                Current.AddKeyBinding(keyBinding);
+            }
+        }
+
+        #endregion
+
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
+        private readonly HwndSource _source;
+        private readonly WeakReferenceCollection<KeyBinding> _keyBindings;
+
+        private HotkeyManager()
+        {
+            _keyBindings = new WeakReferenceCollection<KeyBinding>();
+
+            var parameters = new HwndSourceParameters("Hotkey sink")
+                             {
+                                 HwndSourceHook = HandleMessage,
+                                 ParentWindow = HwndMessage
+                             };
+            _source = new HwndSource(parameters);
+            Register(_source.Handle);
         }
 
         public void AddOrReplace(string name, Key key, ModifierKeys modifiers, EventHandler<HotkeyEventArgs> handler)
@@ -73,53 +125,29 @@ namespace NHotkey.Wpf
             return modifiers;
         }
 
-        private HwndSource _source;
-        
-        void WindowSourceInitialized(object sender, EventArgs e)
+        private void AddKeyBinding(KeyBinding keyBinding)
         {
-            _source = (HwndSource) PresentationSource.FromVisual(_window);
-            if (_source == null)
-                throw new InvalidOperationException("Source is not initialized");
-            _source.AddHook(HandleMessage);
-            RegisterInputBindings();
-            Register(_source.Handle);
+            _keyBindings.Add(keyBinding);
+            var gesture = (KeyGesture)keyBinding.Gesture;
+            string name = GetNameForKeyBinding(gesture);
+            AddOrReplace(name, gesture.Key, gesture.Modifiers, null);
         }
 
-        void WindowClosed(object sender, EventArgs e)
+        private void RemoveKeyBinding(KeyBinding keyBinding)
         {
-            _source.RemoveHook(HandleMessage);
-            Unregister();
-            UnregisterInputBindings();
+            _keyBindings.Remove(keyBinding);
+            var gesture = (KeyGesture)keyBinding.Gesture;
+            string name = GetNameForKeyBinding(gesture);
+            Remove(name);
         }
 
-        private void RegisterInputBindings()
+        private readonly KeyGestureConverter _gestureConverter = new KeyGestureConverter();
+        private string GetNameForKeyBinding(KeyGesture gesture)
         {
-            var converter = new KeyGestureConverter();
-            foreach (var binding in _window.InputBindings.OfType<KeyBinding>())
-            {
-                if (!GetRegisterGlobalHotkey(binding))
-                    return;
-                var gesture = (KeyGesture)binding.Gesture;
-                string name = gesture.DisplayString;
-                if (string.IsNullOrEmpty(name))
-                    name = converter.ConvertToString(gesture);
-                AddOrReplace(name, gesture.Key, gesture.Modifiers, null);
-            }
-        }
-
-        private void UnregisterInputBindings()
-        {
-            var converter = new KeyGestureConverter();
-            foreach (var binding in _window.InputBindings.OfType<KeyBinding>())
-            {
-                if (!GetRegisterGlobalHotkey(binding))
-                    return;
-                var gesture = (KeyGesture)binding.Gesture;
-                string name = gesture.DisplayString;
-                if (string.IsNullOrEmpty(name))
-                    name = converter.ConvertToString(gesture);
-                Remove(name);
-            }
+            string name = gesture.DisplayString;
+            if (string.IsNullOrEmpty(name))
+                name = _gestureConverter.ConvertToString(gesture);
+            return name;
         }
 
         private IntPtr HandleMessage(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam, ref bool handled)
@@ -137,10 +165,10 @@ namespace NHotkey.Wpf
 
         private bool ExecuteBoundCommand(Hotkey hotkey)
         {
-            var key = KeyInterop.KeyFromVirtualKey((int) hotkey.VirtualKey);
+            var key = KeyInterop.KeyFromVirtualKey((int)hotkey.VirtualKey);
             var modifiers = GetModifiers(hotkey.Flags);
             bool handled = false;
-            foreach (var binding in _window.InputBindings.OfType<KeyBinding>())
+            foreach (var binding in _keyBindings)
             {
                 if (binding.Key == key && binding.Modifiers == modifiers)
                 {
@@ -155,10 +183,10 @@ namespace NHotkey.Wpf
             var command = binding.Command;
             var parameter = binding.CommandParameter;
             var target = binding.CommandTarget;
-            
+
             if (command == null)
                 return false;
-            
+
             var routedCommand = command as RoutedCommand;
             if (routedCommand != null)
             {
@@ -177,13 +205,6 @@ namespace NHotkey.Wpf
                 }
             }
             return false;
-        }
-
-        public override void Dispose()
-        {
-            base.Dispose();
-            _window.SourceInitialized -= WindowSourceInitialized;
-            _window.Closed -= WindowClosed;
         }
     }
 }
