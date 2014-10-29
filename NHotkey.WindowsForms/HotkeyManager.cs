@@ -27,7 +27,7 @@ namespace NHotkey.WindowsForms
         private HotkeyManager()
         {
             _messageWindow = new MessageWindow(this);
-            Register(_messageWindow.Handle);
+            SetHwnd(_messageWindow.Handle);
         }
 
         public void AddOrReplace(string name, Keys keys, bool noRepeat, EventHandler<HotkeyEventArgs> handler)

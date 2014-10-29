@@ -42,12 +42,15 @@ namespace NHotkey
 
         private IntPtr _hwnd;
 
-        public void Register(IntPtr hwnd)
+        public void Register(IntPtr hwnd, string name)
         {
             if (!NativeMethods.RegisterHotKey(hwnd, _id, _flags, _virtualKey))
             {
                 var hr = Marshal.GetHRForLastWin32Error();
-                throw Marshal.GetExceptionForHR(hr);
+                var ex = Marshal.GetExceptionForHR(hr);
+                if ((uint) hr == 0x80070581)
+                    throw new HotkeyAlreadyRegisteredException(name, ex);
+                throw ex;
             }
             _hwnd = hwnd;
         }

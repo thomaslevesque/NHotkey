@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -54,6 +55,9 @@ namespace NHotkey.Wpf
             bool oldValue = (bool) e.OldValue;
             bool newValue = (bool) e.NewValue;
 
+            if (DesignerProperties.GetIsInDesignMode(d))
+                return;
+
             if (oldValue && !newValue)
             {
                 Current.RemoveKeyBinding(keyBinding);
@@ -62,6 +66,19 @@ namespace NHotkey.Wpf
             {
                 Current.AddKeyBinding(keyBinding);
             }
+        }
+
+        #endregion
+
+        #region HotkeyAlreadyRegistered event
+
+        public static event EventHandler<HotkeyAlreadyRegisteredEventArgs> HotkeyAlreadyRegistered;
+
+        private static void OnHotkeyAlreadyRegistered(string name)
+        {
+            var handler = HotkeyAlreadyRegistered;
+            if (handler != null)
+                handler(null, new HotkeyAlreadyRegisteredEventArgs(name));
         }
 
         #endregion
@@ -80,7 +97,7 @@ namespace NHotkey.Wpf
                                  ParentWindow = HwndMessage
                              };
             _source = new HwndSource(parameters);
-            Register(_source.Handle);
+            SetHwnd(_source.Handle);
         }
 
         public void AddOrReplace(string name, Key key, ModifierKeys modifiers, EventHandler<HotkeyEventArgs> handler)
@@ -127,18 +144,25 @@ namespace NHotkey.Wpf
 
         private void AddKeyBinding(KeyBinding keyBinding)
         {
-            _keyBindings.Add(keyBinding);
             var gesture = (KeyGesture)keyBinding.Gesture;
             string name = GetNameForKeyBinding(gesture);
-            AddOrReplace(name, gesture.Key, gesture.Modifiers, null);
+            try
+            {
+                AddOrReplace(name, gesture.Key, gesture.Modifiers, null);
+                _keyBindings.Add(keyBinding);
+            }
+            catch (HotkeyAlreadyRegisteredException)
+            {
+                OnHotkeyAlreadyRegistered(name);
+            }
         }
 
         private void RemoveKeyBinding(KeyBinding keyBinding)
         {
-            _keyBindings.Remove(keyBinding);
             var gesture = (KeyGesture)keyBinding.Gesture;
             string name = GetNameForKeyBinding(gesture);
             Remove(name);
+            _keyBindings.Remove(keyBinding);
         }
 
         private readonly KeyGestureConverter _gestureConverter = new KeyGestureConverter();

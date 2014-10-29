@@ -5,6 +5,8 @@
     <Window.InputBindings>
         <KeyBinding Gesture="Ctrl+Alt+Divide" Command="{Binding NegateCommand}"
                     HotkeyManager.RegisterGlobalHotkey="True" />
+        <KeyBinding Gesture="Windows+Shift+S" Command="{Binding TestCommand}"
+                    HotkeyManager.RegisterGlobalHotkey="True" />
     </Window.InputBindings>
     <Grid>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Text="{Binding Value}" />

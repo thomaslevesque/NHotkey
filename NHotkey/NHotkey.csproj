@@ -39,6 +39,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Hotkey.cs" />
+    <Compile Include="HotkeyAlreadyRegisteredException.cs" />
     <Compile Include="HotkeyEventArgs.cs" />
     <Compile Include="HotkeyFlags.cs" />
     <Compile Include="HotkeyManagerBase.cs" />

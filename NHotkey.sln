@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.WindowsForms.Demo", "NHotkey.WindowsForms.Demo\NHotkey.WindowsForms.Demo.csproj", "{30950D62-696C-4C1C-A6F1-93FB7B355E71}"
 EndProject
@@ -26,13 +26,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "NHotkey.Nuget", "NugetPackages\NHotkey.Nuget\NHotkey.Nuget.nuproj", "{04CF71B9-BBD7-477B-B6D7-724D4737221D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget Packages", "Nuget Packages", "{A51CDD2B-BA94-4C9E-B8DD-476E014A388B}"
-EndProject
-Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "NHotkey.WindowsForms.Nuget", "NugetPackages\NHotkey.WindowsForms.Nuget\NHotkey.WindowsForms.Nuget.nuproj", "{62F9949F-D000-4D68-B43E-F12B6D57BC8E}"
-EndProject
-Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "NHotkey.Wpf.Nuget", "NugetPackages\NHotkey.Wpf.Nuget\NHotkey.Wpf.Nuget.nuproj", "{7021723C-8B7B-4E2D-AF9A-303EB77DCD27}"
+	ProjectSection(SolutionItems) = preProject
+		NugetPackages\NHotkey.nuspec = NugetPackages\NHotkey.nuspec
+		NugetPackages\NHotkey.WindowsForms.nuspec = NugetPackages\NHotkey.WindowsForms.nuspec
+		NugetPackages\NHotkey.Wpf.nuspec = NugetPackages\NHotkey.Wpf.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,27 +59,15 @@ Global
 		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04CF71B9-BBD7-477B-B6D7-724D4737221D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04CF71B9-BBD7-477B-B6D7-724D4737221D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04CF71B9-BBD7-477B-B6D7-724D4737221D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62F9949F-D000-4D68-B43E-F12B6D57BC8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62F9949F-D000-4D68-B43E-F12B6D57BC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62F9949F-D000-4D68-B43E-F12B6D57BC8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7021723C-8B7B-4E2D-AF9A-303EB77DCD27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7021723C-8B7B-4E2D-AF9A-303EB77DCD27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7021723C-8B7B-4E2D-AF9A-303EB77DCD27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3} = {CEE3E414-E343-43C9-8CB9-72CA02FD0299}
 		{30950D62-696C-4C1C-A6F1-93FB7B355E71} = {CEE3E414-E343-43C9-8CB9-72CA02FD0299}
+		{324D364C-BF69-4B87-BE83-26935B9F0783} = {FBA6085F-DD7E-4E18-9BC8-8F709157EC33}
 		{BF25B2DD-4D5B-4B43-874D-3A204C73B73A} = {FBA6085F-DD7E-4E18-9BC8-8F709157EC33}
 		{1A22762D-A928-431C-B916-F5ED6DA94C11} = {FBA6085F-DD7E-4E18-9BC8-8F709157EC33}
-		{324D364C-BF69-4B87-BE83-26935B9F0783} = {FBA6085F-DD7E-4E18-9BC8-8F709157EC33}
-		{04CF71B9-BBD7-477B-B6D7-724D4737221D} = {A51CDD2B-BA94-4C9E-B8DD-476E014A388B}
-		{62F9949F-D000-4D68-B43E-F12B6D57BC8E} = {A51CDD2B-BA94-4C9E-B8DD-476E014A388B}
-		{7021723C-8B7B-4E2D-AF9A-303EB77DCD27} = {A51CDD2B-BA94-4C9E-B8DD-476E014A388B}
+		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3} = {CEE3E414-E343-43C9-8CB9-72CA02FD0299}
 	EndGlobalSection
 EndGlobal

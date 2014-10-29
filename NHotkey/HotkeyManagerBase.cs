@@ -23,7 +23,7 @@ namespace NHotkey
                 _hotkeys.Add(name, hotkey);
                 _hotkeyNames.Add(hotkey.Id, name);
                 if (_hwnd != IntPtr.Zero)
-                    hotkey.Register(_hwnd);
+                    hotkey.Register(_hwnd, name);
             }
         }
 
@@ -42,28 +42,9 @@ namespace NHotkey
             }
         }
 
-        internal void Register(IntPtr hwnd)
+        internal void SetHwnd(IntPtr hwnd)
         {
-            lock (_hotkeys)
-            {
-                foreach (var hotkey in _hotkeys.Values)
-                {
-                    hotkey.Register(hwnd);
-                }
-                _hwnd = hwnd;
-            }
-        }
-
-        internal void Unregister()
-        {
-            lock (_hotkeys)
-            {
-                foreach (var hotkey in _hotkeys.Values)
-                {
-                    hotkey.Unregister();
-                }
-                _hwnd = IntPtr.Zero;
-            }
+            _hwnd = hwnd;
         }
 
         private const int WmHotkey = 0x0312;

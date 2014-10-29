@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace NHotkey.Wpf.Demo
@@ -12,11 +13,18 @@ namespace NHotkey.Wpf.Demo
     {
         public MainWindow()
         {
+            HotkeyManager.HotkeyAlreadyRegistered += HotkeyManager_HotkeyAlreadyRegistered;
+
             HotkeyManager.Current.AddOrReplace("Increment", Key.Add, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
             HotkeyManager.Current.AddOrReplace("Decrement", Key.Subtract, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
 
             InitializeComponent();
             DataContext = this;
+        }
+
+        private void HotkeyManager_HotkeyAlreadyRegistered(object sender, HotkeyAlreadyRegisteredEventArgs e)
+        {
+            MessageBox.Show(string.Format("The hotkey {0} is already registered by another application", e.Name));
         }
 
         private void OnIncrement(object sender, HotkeyEventArgs e)
@@ -45,15 +53,20 @@ namespace NHotkey.Wpf.Demo
         private DelegateCommand _negateCommand;
         public ICommand NegateCommand
         {
-            get
-            {
-                if (_negateCommand == null)
-                {
-                    _negateCommand = new DelegateCommand(Negate);
-                }
-                return _negateCommand;
-            }
+            get { return _negateCommand ?? (_negateCommand = new DelegateCommand(Negate)); }
         }
+
+        private DelegateCommand _testCommand;
+        public ICommand TestCommand
+        {
+            get { return _testCommand ?? (_testCommand = new DelegateCommand(Test)); }
+        }
+
+        private void Test()
+        {
+            MessageBox.Show("Test");
+        }
+
 
         private void Negate()
         {
