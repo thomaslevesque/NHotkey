@@ -1,7 +1,11 @@
 NHotkey
 =======
 
-Easily handle shortcut keys even when your app doesn't have focus!
+Easily handle shortcut keys even when your WPF or WinForms app doesn't have focus. Declare hotkeys in XAML with the familiar `KeyBinding` syntax.
+
+Nuget packages:
+- for WPF: [NHotkey.Wpf](http://www.nuget.org/packages/NHotkey.Wpf/)
+- for Windows Forms: [NHotkey.WindowsForms](http://www.nuget.org/packages/NHotkey.WindowsForms/)
 
 ### Windows Forms usage
 
