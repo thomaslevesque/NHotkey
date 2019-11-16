@@ -54,7 +54,7 @@ property of the `HotkeyEventArgs`:
             case "Increment":
                 Value++;
                 break;
-            case "DEcrement":
+            case "Decrement":
                 Value--;
                 break;
         }
