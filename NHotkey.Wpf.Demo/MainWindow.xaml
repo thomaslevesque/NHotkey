@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="300" Width="300">
     <Window.InputBindings>
-        <KeyBinding Gesture="Ctrl+Alt+Divide" Command="{Binding NegateCommand}"
+        <KeyBinding Gesture="Ctrl+Alt+N" Command="{Binding NegateCommand}"
                     HotkeyManager.RegisterGlobalHotkey="True" />
         <KeyBinding Gesture="Windows+Shift+S" Command="{Binding TestCommand}"
                     HotkeyManager.RegisterGlobalHotkey="True" />
