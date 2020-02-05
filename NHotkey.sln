@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.WindowsForms.Demo", "NHotkey.WindowsForms.Demo\NHotkey.WindowsForms.Demo.csproj", "{30950D62-696C-4C1C-A6F1-93FB7B355E71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.WindowsForms.Demo", "samples\NHotkey.WindowsForms.Demo\NHotkey.WindowsForms.Demo.csproj", "{30950D62-696C-4C1C-A6F1-93FB7B355E71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey", "NHotkey\NHotkey.csproj", "{324D364C-BF69-4B87-BE83-26935B9F0783}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey", "src\NHotkey\NHotkey.csproj", "{324D364C-BF69-4B87-BE83-26935B9F0783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.WindowsForms", "NHotkey.WindowsForms\NHotkey.WindowsForms.csproj", "{BF25B2DD-4D5B-4B43-874D-3A204C73B73A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.WindowsForms", "src\NHotkey.WindowsForms\NHotkey.WindowsForms.csproj", "{BF25B2DD-4D5B-4B43-874D-3A204C73B73A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.Wpf", "NHotkey.Wpf\NHotkey.Wpf.csproj", "{1A22762D-A928-431C-B916-F5ED6DA94C11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.Wpf", "src\NHotkey.Wpf\NHotkey.Wpf.csproj", "{1A22762D-A928-431C-B916-F5ED6DA94C11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.Wpf.Demo", "NHotkey.Wpf.Demo\NHotkey.Wpf.Demo.csproj", "{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.Wpf.Demo", "samples\NHotkey.Wpf.Demo\NHotkey.Wpf.Demo.csproj", "{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{CEE3E414-E343-43C9-8CB9-72CA02FD0299}"
 EndProject

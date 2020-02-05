@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NHotkey.Wpf\NHotkey.Wpf.csproj" />
-    <ProjectReference Include="..\NHotkey\NHotkey.csproj" />
+    <ProjectReference Include="..\..\src\NHotkey.WindowsForms\NHotkey.WindowsForms.csproj" />
   </ItemGroup>
 </Project>
