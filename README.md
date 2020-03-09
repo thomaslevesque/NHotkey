@@ -1,6 +1,11 @@
 NHotkey
 =======
 
+[![NuGet version](https://img.shields.io/nuget/v/NHotkey.svg?logo=nuget&label=NHotkey)](https://www.nuget.org/packages/NHotkey)
+[![NuGet version](https://img.shields.io/nuget/v/NHotkey.Wpf.svg?logo=nuget&label=NHotkey.Wpf)](https://www.nuget.org/packages/NHotkey.Wpf)
+[![NuGet version](https://img.shields.io/nuget/v/NHotkey.WindowsForms.svg?logo=nuget&label=NHotkey.WindowsForms)](https://www.nuget.org/packages/NHotkey.WindowsForms)
+[![AppVeyor build](https://img.shields.io/appveyor/ci/thomaslevesque/nhotkey.svg?logo=appveyor&logoColor=cccccc)](https://ci.appveyor.com/project/thomaslevesque/nhotkey)
+
 Easily handle shortcut keys even when your WPF or WinForms app doesn't have focus. Declare hotkeys in XAML with the familiar `KeyBinding` syntax.
 
 Nuget packages:
