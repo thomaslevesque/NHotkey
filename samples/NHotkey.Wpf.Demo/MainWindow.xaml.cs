@@ -15,8 +15,8 @@ namespace NHotkey.Wpf.Demo
         {
             HotkeyManager.HotkeyAlreadyRegistered += HotkeyManager_HotkeyAlreadyRegistered;
 
-            HotkeyManager.Current.AddOrReplace("Increment", Key.Add, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
-            HotkeyManager.Current.AddOrReplace("Decrement", Key.Subtract, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
+            HotkeyManager.Current.AddOrReplace("Increment", Key.Up, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
+            HotkeyManager.Current.AddOrReplace("Decrement", Key.Down, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
 
             InitializeComponent();
             DataContext = this;

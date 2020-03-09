@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <TargetFrameworks>net40;net45;netcoreapp3.0</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <PropertyGroup Label="Package properties">
+    <Description>A managed library to handle global hotkeys in Windows Forms applications. This package contains the concrete HotkeyManager implementation for Windows Forms.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NHotkey\NHotkey.csproj" />
+  </ItemGroup>
+</Project>
