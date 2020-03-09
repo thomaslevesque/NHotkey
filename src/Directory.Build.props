@@ -2,4 +2,11 @@
   <PropertyGroup>
     <Version>1.2.1.0</Version>
   </PropertyGroup>
+
+  <PropertyGroup Label="Package properties">
+    <Authors>Thomas Levesque</Authors>
+    <PackageProjectUrl>https://github.com/thomaslevesque/NHotkey</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageTags>global;hotkey;windows</PackageTags>
+  </PropertyGroup>
 </Project>
