@@ -1,7 +1,4 @@
 <Project>
-  <PropertyGroup>
-    <Version>1.2.1.0</Version>
-  </PropertyGroup>
 
   <PropertyGroup Label="Package properties">
     <Authors>Thomas Levesque</Authors>
@@ -9,4 +6,9 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>global;hotkey;windows</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="2.2.0" PrivateAssets="all" />
+  </ItemGroup>
+
 </Project>
