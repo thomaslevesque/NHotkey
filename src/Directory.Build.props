@@ -1,5 +1,10 @@
 <Project>
 
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)NHotkey.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
   <PropertyGroup Label="Package properties">
     <Authors>Thomas Levesque</Authors>
     <PackageProjectUrl>https://github.com/thomaslevesque/NHotkey</PackageProjectUrl>
