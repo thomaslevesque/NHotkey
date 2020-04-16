@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NHotkey.Wpf
 {
@@ -11,7 +12,8 @@ namespace NHotkey.Wpf
         
         public IEnumerator<T> GetEnumerator()
         {
-            foreach (var reference in _references)
+            var references = _references.ToList();
+            foreach (var reference in references)
             {
                 var target = reference.Target;
                 if (target != null)
