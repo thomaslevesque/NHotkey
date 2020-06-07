@@ -1,37 +1,37 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.WindowsForms.Demo", "samples\NHotkey.WindowsForms.Demo\NHotkey.WindowsForms.Demo.csproj", "{30950D62-696C-4C1C-A6F1-93FB7B355E71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHotkey.WindowsForms.Demo", "samples\NHotkey.WindowsForms.Demo\NHotkey.WindowsForms.Demo.csproj", "{30950D62-696C-4C1C-A6F1-93FB7B355E71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey", "src\NHotkey\NHotkey.csproj", "{324D364C-BF69-4B87-BE83-26935B9F0783}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHotkey", "src\NHotkey\NHotkey.csproj", "{324D364C-BF69-4B87-BE83-26935B9F0783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.WindowsForms", "src\NHotkey.WindowsForms\NHotkey.WindowsForms.csproj", "{BF25B2DD-4D5B-4B43-874D-3A204C73B73A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHotkey.WindowsForms", "src\NHotkey.WindowsForms\NHotkey.WindowsForms.csproj", "{BF25B2DD-4D5B-4B43-874D-3A204C73B73A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.Wpf", "src\NHotkey.Wpf\NHotkey.Wpf.csproj", "{1A22762D-A928-431C-B916-F5ED6DA94C11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHotkey.Wpf", "src\NHotkey.Wpf\NHotkey.Wpf.csproj", "{1A22762D-A928-431C-B916-F5ED6DA94C11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHotkey.Wpf.Demo", "samples\NHotkey.Wpf.Demo\NHotkey.Wpf.Demo.csproj", "{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHotkey.Wpf.Demo", "samples\NHotkey.Wpf.Demo\NHotkey.Wpf.Demo.csproj", "{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{CEE3E414-E343-43C9-8CB9-72CA02FD0299}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{CEE3E414-E343-43C9-8CB9-72CA02FD0299}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{FBA6085F-DD7E-4E18-9BC8-8F709157EC33}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FBA6085F-DD7E-4E18-9BC8-8F709157EC33}"
 	ProjectSection(SolutionItems) = preProject
-		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
+		src\Directory.Build.props = src\Directory.Build.props
+		src\NHotkey.snk = src\NHotkey.snk
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{767B190E-07E3-4392-A685-CC95C1FF1419}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{767B190E-07E3-4392-A685-CC95C1FF1419}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		build.cmd = build.cmd
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget Packages", "Nuget Packages", "{A51CDD2B-BA94-4C9E-B8DD-476E014A388B}"
-	ProjectSection(SolutionItems) = preProject
-		NugetPackages\NHotkey.nuspec = NugetPackages\NHotkey.nuspec
-		NugetPackages\NHotkey.WindowsForms.nuspec = NugetPackages\NHotkey.WindowsForms.nuspec
-		NugetPackages\NHotkey.Wpf.nuspec = NugetPackages\NHotkey.Wpf.nuspec
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{90C6005F-8801-41EF-AE11-9B0C6483025E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "build", "tools\build\build.csproj", "{1588EBC2-C947-4086-920A-CF0615E22410}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +59,8 @@ Global
 		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1588EBC2-C947-4086-920A-CF0615E22410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1588EBC2-C947-4086-920A-CF0615E22410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +71,9 @@ Global
 		{BF25B2DD-4D5B-4B43-874D-3A204C73B73A} = {FBA6085F-DD7E-4E18-9BC8-8F709157EC33}
 		{1A22762D-A928-431C-B916-F5ED6DA94C11} = {FBA6085F-DD7E-4E18-9BC8-8F709157EC33}
 		{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3} = {CEE3E414-E343-43C9-8CB9-72CA02FD0299}
+		{1588EBC2-C947-4086-920A-CF0615E22410} = {90C6005F-8801-41EF-AE11-9B0C6483025E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CACB69F6-E9A2-4B9C-84DC-6A91978A571B}
 	EndGlobalSection
 EndGlobal
