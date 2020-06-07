@@ -5,10 +5,27 @@
     <Window.InputBindings>
         <KeyBinding Gesture="Ctrl+Alt+N" Command="{Binding NegateCommand}"
                     HotkeyManager.RegisterGlobalHotkey="True" />
-        <KeyBinding Gesture="Windows+Shift+S" Command="{Binding TestCommand}"
+        <KeyBinding Gesture="Ctrl+Alt+T" Command="{Binding TestCommand}"
                     HotkeyManager.RegisterGlobalHotkey="True" />
     </Window.InputBindings>
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Text="{Binding Value}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <CheckBox Grid.Row="0" Content="Global hotkeys enabled" IsChecked="{Binding IsHotkeyManagerEnabled}" />
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Text="{Binding Value}" />
+        <TextBlock Grid.Row="2" HorizontalAlignment="Left" Text="Increment" />
+        <TextBlock Grid.Row="3" HorizontalAlignment="Left" Text="Decrement" />
+        <TextBlock Grid.Row="4" HorizontalAlignment="Left" Text="Negate" />
+        <TextBlock Grid.Row="5" HorizontalAlignment="Left" Text="Test" />
+        <TextBlock Grid.Row="2" HorizontalAlignment="Right" Text="{Binding IncrementHotkey}" />
+        <TextBlock Grid.Row="3" HorizontalAlignment="Right" Text="{Binding DecrementHotkey}" />
+        <TextBlock Grid.Row="4" HorizontalAlignment="Right" Text="Ctrl+Alt+N" />
+        <TextBlock Grid.Row="5" HorizontalAlignment="Right" Text="Ctrl+Alt+T" />
     </Grid>
 </Window>

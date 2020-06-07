@@ -11,12 +11,15 @@ namespace NHotkey.Wpf.Demo
     /// </summary>
     public partial class MainWindow : INotifyPropertyChanged
     {
+        private static readonly KeyGesture IncrementGesture = new KeyGesture(Key.Up, ModifierKeys.Control | ModifierKeys.Alt);
+        private static readonly KeyGesture DecrementGesture = new KeyGesture(Key.Down, ModifierKeys.Control | ModifierKeys.Alt);
+
         public MainWindow()
         {
             HotkeyManager.HotkeyAlreadyRegistered += HotkeyManager_HotkeyAlreadyRegistered;
 
-            HotkeyManager.Current.AddOrReplace("Increment", Key.Up, ModifierKeys.Control | ModifierKeys.Alt, OnIncrement);
-            HotkeyManager.Current.AddOrReplace("Decrement", Key.Down, ModifierKeys.Control | ModifierKeys.Alt, OnDecrement);
+            HotkeyManager.Current.AddOrReplace("Increment", IncrementGesture.Key, IncrementGesture.Modifiers, OnIncrement);
+            HotkeyManager.Current.AddOrReplace("Decrement", DecrementGesture.Key, DecrementGesture.Modifiers, OnDecrement);
 
             InitializeComponent();
             DataContext = this;
@@ -60,6 +63,15 @@ namespace NHotkey.Wpf.Demo
         public ICommand TestCommand
         {
             get { return _testCommand ?? (_testCommand = new DelegateCommand(Test)); }
+        }
+
+        public string IncrementHotkey => IncrementGesture.GetDisplayStringForCulture(null);
+        public string DecrementHotkey => DecrementGesture.GetDisplayStringForCulture(null);
+
+        public bool IsHotkeyManagerEnabled
+        {
+            get => HotkeyManager.Current.IsEnabled;
+            set => HotkeyManager.Current.IsEnabled = value;
         }
 
         private void Test()

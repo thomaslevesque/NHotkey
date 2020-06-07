@@ -1,18 +1,22 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace NHotkey.WindowsForms.Demo
 {
     public partial class Form1 : Form
     {
+        private static readonly Keys IncrementKeys = Keys.Control | Keys.Alt | Keys.Up;
+        private static readonly Keys DecrementKeys = Keys.Control | Keys.Alt | Keys.Down;
+
         private int _value;
 
         public Form1()
         {
             InitializeComponent();
 
-            HotkeyManager.Current.AddOrReplace("Increment", Keys.Control | Keys.Alt | Keys.Add, OnIncrement);
-            HotkeyManager.Current.AddOrReplace("Decrement", Keys.Control | Keys.Alt | Keys.Subtract, OnDecrement);
+            HotkeyManager.Current.AddOrReplace("Increment", IncrementKeys, OnIncrement);
+            HotkeyManager.Current.AddOrReplace("Decrement", DecrementKeys, OnDecrement);
+
+            chkEnableGlobalHotkeys.Checked = HotkeyManager.Current.IsEnabled;
         }
 
         private void OnIncrement(object sender, HotkeyEventArgs e)
@@ -37,10 +41,9 @@ namespace NHotkey.WindowsForms.Demo
             }
         }
 
-        private void btnChangeBindings_Click(object sender, EventArgs e)
+        private void chkEnableGlobalHotkeys_CheckedChanged(object sender, System.EventArgs e)
         {
-            HotkeyManager.Current.AddOrReplace("Increment", Keys.Control | Keys.Alt | Keys.Up, OnIncrement);
-            HotkeyManager.Current.AddOrReplace("Decrement", Keys.Control | Keys.Alt | Keys.Down, OnDecrement);
+            HotkeyManager.Current.IsEnabled = chkEnableGlobalHotkeys.Checked;
         }
     }
 }
