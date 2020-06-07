@@ -42,6 +42,8 @@ namespace NHotkey
             }
         }
 
+        public bool IsEnabled { get; set; } = true;
+
         internal void SetHwnd(IntPtr hwnd)
         {
             _hwnd = hwnd;
@@ -58,7 +60,7 @@ namespace NHotkey
             out Hotkey hotkey)
         {
             hotkey = null;
-            if (msg == WmHotkey)
+            if (IsEnabled && msg == WmHotkey)
             {
                 int id = wParam.ToInt32();
                 string name;
