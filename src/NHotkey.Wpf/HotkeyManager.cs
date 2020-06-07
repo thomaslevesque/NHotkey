@@ -100,6 +100,16 @@ namespace NHotkey.Wpf
             SetHwnd(_source.Handle);
         }
 
+        public void AddOrReplace(string name, KeyGesture gesture, EventHandler<HotkeyEventArgs> handler)
+        {
+            AddOrReplace(name, gesture, false, handler);
+        }
+
+        public void AddOrReplace(string name, KeyGesture gesture, bool noRepeat, EventHandler<HotkeyEventArgs> handler)
+        {
+            AddOrReplace(name, gesture.Key, gesture.Modifiers, noRepeat, handler);
+        }
+
         public void AddOrReplace(string name, Key key, ModifierKeys modifiers, EventHandler<HotkeyEventArgs> handler)
         {
             AddOrReplace(name, key, modifiers, false, handler);
