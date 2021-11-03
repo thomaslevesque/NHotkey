@@ -4,6 +4,7 @@
     <UseWPF>true</UseWPF>
     <OutputType>WinExe</OutputType>
     <IsPackable>false</IsPackable>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NHotkey.Wpf\NHotkey.Wpf.csproj" />
