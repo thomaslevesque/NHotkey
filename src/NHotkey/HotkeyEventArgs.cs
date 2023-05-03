@@ -6,7 +6,7 @@ namespace NHotkey
     {
         private readonly string _name;
 
-        internal HotkeyEventArgs(string name)
+        public HotkeyEventArgs(string name)
         {
             _name = name;
         }
