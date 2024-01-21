@@ -7,7 +7,7 @@ using static SimpleExec.Command;
 
 namespace build
 {
-    [Command(ThrowOnUnexpectedArgument = false)]
+    //[Command(ThrowOnUnexpectedArgument = false)]
     [SuppressDefaultHelpOption]
     class Build
     {
@@ -29,11 +29,15 @@ namespace build
                 app.ShowHelp();
                 app.Out.WriteLine("Bullseye help:");
                 app.Out.WriteLine();
-                RunTargetsAndExit(new[] { "-h" });
+                //RunTargetsAndExit(new[] { "-h" });
+                RunTargetsAndExitAsync(new[] { "-h" });
+                
                 return;
             }
 
             Directory.SetCurrentDirectory(GetSolutionDirectory());
+            Console.WriteLine(GetSolutionDirectory());
+            Console.WriteLine(Configuration);
 
             string artifactsDir = Path.GetFullPath("artifacts");
             string logsDir = Path.Combine(artifactsDir, "logs");
@@ -54,20 +58,21 @@ namespace build
             Target(
                 "build",
                 DependsOn("artifactDirectories"),
-                () => Run(
+                () => RunAsync(
                     "dotnet",
                     $"build -c \"{Configuration}\" /bl:\"{buildLogFile}\" \"{solutionFile}\""));
 
             Target(
                 "pack",
                 DependsOn("artifactDirectories", "build"),
-                () => Run(
+                () => RunAsync(
                     "dotnet",
                     $"pack -c \"{Configuration}\" --no-build -o \"{packagesDir}\""));
 
             Target("default", DependsOn("pack"));
 
-            RunTargetsWithoutExiting(RemainingArguments);
+            //RunTargetsWithoutExiting(RemainingArguments);
+            RunTargetsWithoutExitingAsync(RemainingArguments);
         }
 
         private static string GetSolutionDirectory() =>

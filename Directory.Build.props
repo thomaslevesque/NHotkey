@@ -1,6 +1,7 @@
 <Project>
-
+  
   <PropertyGroup>
+    <TargetFrameworks>net48;net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)NHotkey.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
@@ -15,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MinVer" Version="2.3.0" PrivateAssets="all" />
+    <!--<PackageReference Include="MinVer" Version="2.3.0" PrivateAssets="all" />-->
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
   </ItemGroup>
 

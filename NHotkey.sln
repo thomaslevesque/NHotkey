@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34414.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHotkey.WindowsForms.Demo", "samples\NHotkey.WindowsForms.Demo\NHotkey.WindowsForms.Demo.csproj", "{30950D62-696C-4C1C-A6F1-93FB7B355E71}"
 EndProject
@@ -16,15 +16,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{CEE3E414-E343-43C9-8CB9-72CA02FD0299}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FBA6085F-DD7E-4E18-9BC8-8F709157EC33}"
-	ProjectSection(SolutionItems) = preProject
-		src\Directory.Build.props = src\Directory.Build.props
-		src\NHotkey.snk = src\NHotkey.snk
-	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{767B190E-07E3-4392-A685-CC95C1FF1419}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{767B190E-07E3-4392-A685-CC95C1FF1419}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
 		build.cmd = build.cmd
+		Directory.Build.props = Directory.Build.props
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection

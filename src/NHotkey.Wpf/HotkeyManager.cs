@@ -10,7 +10,7 @@ namespace NHotkey.Wpf
         "Microsoft.Design",
         "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable",
         Justification = "This is a singleton; disposing it would break it")]
-    public class HotkeyManager : HotkeyManagerBase
+    public class HotkeyManager : HotkeyManagerBase, IDisposable
     {
         #region Singleton implementation
 
@@ -176,6 +176,8 @@ namespace NHotkey.Wpf
         }
 
         private readonly KeyGestureConverter _gestureConverter = new KeyGestureConverter();
+        private bool disposedValue;
+
         private string GetNameForKeyBinding(KeyGesture gesture)
         {
             string name = gesture.DisplayString;
@@ -239,6 +241,26 @@ namespace NHotkey.Wpf
                 }
             }
             return false;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    _source?.RemoveHook(HandleMessage);
+                    _source?.Dispose();
+                }
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

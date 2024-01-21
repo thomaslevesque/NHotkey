@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 
 namespace NHotkey.Wpf.Demo
 {
@@ -20,7 +21,7 @@ namespace NHotkey.Wpf.Demo
 
             HotkeyManager.Current.AddOrReplace("Increment", IncrementGesture, OnIncrement);
             HotkeyManager.Current.AddOrReplace("Decrement", DecrementGesture, OnDecrement);
-
+            
             InitializeComponent();
             DataContext = this;
         }
@@ -92,6 +93,11 @@ namespace NHotkey.Wpf.Demo
         {
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            HotkeyManager.Current.Dispose();
         }
     }
 

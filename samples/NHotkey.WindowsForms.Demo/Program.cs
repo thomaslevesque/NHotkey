@@ -13,7 +13,7 @@ namespace NHotkey.WindowsForms.Demo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+            //Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);            
             Application.Run(new Form1());
         }
     }
