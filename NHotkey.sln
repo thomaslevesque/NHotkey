@@ -14,6 +14,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHotkey.Wpf.Demo", "samples\NHotkey.Wpf.Demo\NHotkey.Wpf.Demo.csproj", "{338F60F0-F9FE-42AB-9EAE-31E9C3E3CEC3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{CEE3E414-E343-43C9-8CB9-72CA02FD0299}"
+	ProjectSection(SolutionItems) = preProject
+		samples\Directory.Build.props = samples\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FBA6085F-DD7E-4E18-9BC8-8F709157EC33}"
 	ProjectSection(SolutionItems) = preProject

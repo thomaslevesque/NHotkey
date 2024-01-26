@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lblValue = new System.Windows.Forms.Label();
-            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,12 +51,6 @@
             this.lblValue.TabIndex = 0;
             this.lblValue.Text = "0";
             this.lblValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // trayIcon
-            // 
-            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "NHotkey demo";
-            this.trayIcon.Visible = true;
             // 
             // panel1
             // 
@@ -144,7 +137,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblValue;
-        private System.Windows.Forms.NotifyIcon trayIcon;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
@@ -153,4 +145,3 @@
         private System.Windows.Forms.CheckBox chkEnableGlobalHotkeys;
     }
 }
-
