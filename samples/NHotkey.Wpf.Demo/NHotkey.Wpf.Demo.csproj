@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net481;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>$(DemoTargetFrameworks)</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <OutputType>WinExe</OutputType>
     <IsPackable>false</IsPackable>

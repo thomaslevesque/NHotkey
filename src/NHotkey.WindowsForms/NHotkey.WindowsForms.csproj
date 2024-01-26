@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>$(LibraryTargetFrameworks)</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
   <PropertyGroup Label="Package properties">

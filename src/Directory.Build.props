@@ -1,6 +1,7 @@
 <Project>
 
   <PropertyGroup>
+    <LibraryTargetFrameworks>net462;net6.0-windows</LibraryTargetFrameworks>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)NHotkey.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
