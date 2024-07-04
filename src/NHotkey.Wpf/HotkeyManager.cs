@@ -94,8 +94,7 @@ namespace NHotkey.Wpf
             var parameters = new HwndSourceParameters("Hotkey sink")
                              {
                                  HwndSourceHook = HandleMessage,
-                                 ParentWindow = HwndMessage,
-                                 WindowStyle = 0x08000000 // WS_EX_NOACTIVATE
+                                 ParentWindow = HwndMessage
                              };
             _source = new HwndSource(parameters);
             SetHwnd(_source.Handle);
