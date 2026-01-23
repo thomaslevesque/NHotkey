@@ -14,6 +14,8 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write # enable GitHub OIDC token issuance, needed for Nuget trusted publishing
     steps:
     - name: Download artifacts
       uses: actions/download-artifact@v4
