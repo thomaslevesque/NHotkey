@@ -34,12 +34,6 @@ as long as it's unique;
 - the last parameter is a delegate of type `EventHandler<HotkeyEventArgs>` that will be called
 when this hotkey is pressed. For instance:
 
-Notes regarding the Windows key:
-- The standard `Keys` enum does not include the Windows key as a modifier, so NHotkey defines a `ModKeys` class that
-  exposes all modifier keys, including the Windows key. You can just use `ModKeys` instead of `Keys` for the modifiers.
-- Keep in mind that the operating system reserves some combinations involving the Windows key. Trying to register such
-  combinations as hotkeys will fail.
-
 ```csharp
     private void OnIncrement(object sender, HotkeyEventArgs e)
     {
@@ -72,6 +66,12 @@ property of the `HotkeyEventArgs`:
         e.Handled = true;
     }
 ```
+
+Notes regarding the Windows key:
+- The standard `Keys` enum does not include the Windows key as a modifier, so NHotkey defines a `ModKeys` class that
+  exposes all modifier keys, including the Windows key. You can just use `ModKeys` instead of `Keys` for the modifiers.
+- Keep in mind that the operating system reserves some combinations involving the Windows key. Trying to register such
+  combinations as hotkeys will fail.
 
 ### WPF usage
 
