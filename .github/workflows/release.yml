@@ -33,7 +33,7 @@ jobs:
       shell: pwsh
       run: |
         Get-ChildItem /tmp/artifacts/packages -Filter *.nupkg | ForEach-Object {
-          dotnet nuget push "$_.FullName" `
+          dotnet nuget push "$($_.FullName)" `
             --api-key "$Env:NUGET_API_KEY" `
             --source https://api.nuget.org/v3/index.json
         }
