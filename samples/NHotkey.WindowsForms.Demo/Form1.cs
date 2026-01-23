@@ -4,8 +4,8 @@ namespace NHotkey.WindowsForms.Demo
 {
     public partial class Form1 : Form
     {
-        private static readonly Keys IncrementKeys = Keys.Control | Keys.Alt | Keys.Up;
-        private static readonly Keys DecrementKeys = Keys.Control | Keys.Alt | Keys.Down;
+        private static readonly Keys IncrementKeys = ModKeys.Control | ModKeys.Windows | Keys.Up;
+        private static readonly Keys DecrementKeys = ModKeys.Control | ModKeys.Windows | Keys.Down;
 
         private int _value;
 

@@ -72,7 +72,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(153, 30);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Ctrl+Alt+Down";
+            this.label4.Text = "Ctrl+Windows+Down";
             // 
             // label2
             // 
@@ -92,7 +92,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(125, 30);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Ctrl+Alt+Up";
+            this.label3.Text = "Ctrl+Windows+Up";
             // 
             // label1
             // 

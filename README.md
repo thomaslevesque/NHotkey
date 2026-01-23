@@ -24,8 +24,8 @@ handle hotkeys, import the `NHotkey.WindowsForms` namespace:
 During initialization, add some hotkeys:
 
 ```csharp
-    HotkeyManager.Current.AddOrReplace("Increment", Keys.Control | Keys.Alt | Keys.Add, OnIncrement);
-    HotkeyManager.Current.AddOrReplace("Decrement", Keys.Control | Keys.Alt | Keys.Subtract, OnDecrement);
+    HotkeyManager.Current.AddOrReplace("Increment", ModKeys.Control | ModKeys.Alt | Keys.Add, OnIncrement);
+    HotkeyManager.Current.AddOrReplace("Decrement", ModKeys.Control | ModKeys.Alt | Keys.Subtract, OnDecrement);
 ```
 
 - the first parameter is an application-defined name for the hotkey; it can be anything you like,
@@ -33,6 +33,12 @@ as long as it's unique;
 - the second parameter is the combination of keys for which you want to register a hotkey;
 - the last parameter is a delegate of type `EventHandler<HotkeyEventArgs>` that will be called
 when this hotkey is pressed. For instance:
+
+Notes regarding the Windows key:
+- The standard `Keys` enum does not include the Windows key as a modifier, so NHotkey defines a `ModKeys` class that
+  exposes all modifier keys, including the Windows key. You can just use `ModKeys` instead of `Keys` for the modifiers.
+- Keep in mind that the operating system reserves some combinations involving the Windows key. Trying to register such
+  combinations as hotkeys will fail.
 
 ```csharp
     private void OnIncrement(object sender, HotkeyEventArgs e)

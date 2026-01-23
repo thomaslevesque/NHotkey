@@ -11,8 +11,8 @@ namespace NHotkey.Wpf.Demo
     /// </summary>
     public partial class MainWindow : INotifyPropertyChanged
     {
-        private static readonly KeyGesture IncrementGesture = new KeyGesture(Key.Up, ModifierKeys.Control | ModifierKeys.Alt);
-        private static readonly KeyGesture DecrementGesture = new KeyGesture(Key.Down, ModifierKeys.Control | ModifierKeys.Alt);
+        private static readonly KeyGesture IncrementGesture = new KeyGesture(Key.Up, ModifierKeys.Control | ModifierKeys.Windows);
+        private static readonly KeyGesture DecrementGesture = new KeyGesture(Key.Down, ModifierKeys.Control | ModifierKeys.Windows);
 
         public MainWindow()
         {

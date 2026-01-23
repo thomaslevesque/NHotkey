@@ -44,15 +44,14 @@ namespace NHotkey.WindowsForms
 
         private static HotkeyFlags GetFlags(Keys hotkey, bool noRepeat)
         {
-            var noMod = hotkey & ~Keys.Modifiers;
             var flags = HotkeyFlags.None;
-            if (hotkey.HasFlag(Keys.Alt))
+            if (hotkey.HasFlag(ModKeys.Alt))
                 flags |= HotkeyFlags.Alt;
-            if (hotkey.HasFlag(Keys.Control))
+            if (hotkey.HasFlag(ModKeys.Control))
                 flags |= HotkeyFlags.Control;
-            if (hotkey.HasFlag(Keys.Shift))
+            if (hotkey.HasFlag(ModKeys.Shift))
                 flags |= HotkeyFlags.Shift;
-            if (noMod == Keys.LWin || noMod == Keys.RWin)
+            if (hotkey.HasFlag(ModKeys.Windows))
                 flags |= HotkeyFlags.Windows;
             if (noRepeat)
                 flags |= HotkeyFlags.NoRepeat;
@@ -81,8 +80,7 @@ namespace NHotkey.WindowsForms
             protected override void WndProc(ref Message m)
             {
                 bool handled = false;
-                Hotkey hotkey;
-                m.Result = _hotkeyManager.HandleHotkeyMessage(Handle, m.Msg, m.WParam, m.LParam, ref handled, out hotkey);
+                m.Result = _hotkeyManager.HandleHotkeyMessage(Handle, m.Msg, m.WParam, m.LParam, ref handled, out _);
                 if (!handled)
                     base.WndProc(ref m);
             }
