@@ -24,19 +24,19 @@ Target(
 
 Target(
     "build",
-    DependsOn("artifactDirectories"),
+    dependsOn: ["artifactDirectories"],
     () => Run(
         "dotnet",
         $"build -c \"{commandLineOptions.Configuration}\" /bl:\"{buildLogFile}\" \"{solutionFile}\""));
 
 Target(
     "pack",
-    DependsOn("artifactDirectories", "build"),
+    dependsOn: ["artifactDirectories", "build"],
     () => Run(
         "dotnet",
         $"pack -c \"{commandLineOptions.Configuration}\" --no-build -o \"{packagesDir}\""));
 
-Target("default", DependsOn("pack"));
+Target("default", dependsOn: ["pack"]);
 
 if (commandLineOptions.ShowHelp)
 {
